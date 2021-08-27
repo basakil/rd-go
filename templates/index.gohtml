@@ -1,0 +1,18 @@
+<h1>Hello, {{.Name}}</h1>
+{{/* 
+<p>
+  Here is your discount coupon worth {{.Amount}}:
+  <span>{{.Coupon}}</span>
+<p> */}}
+
+<ul>
+    {{range $index, $element := .Ul}}
+    <li> {{$index}} - {{$element}} </li>
+    {{end}}
+</ul>
+<p>
+    <b>Without date formatting: {{.Date}}</b>
+        <hr>
+     <b>With date formatting: {{fdateMDY .Date}}</b>
+<p>
+
