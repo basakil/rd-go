@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -21,9 +22,28 @@ func homeFunc(w http.ResponseWriter, r *http.Request) {
 	if err := tpl.ExecuteTemplate(w, "index.gohtml", time.Now()); err != nil {
 		log.Fatalln(err)
 	}
+
 }
 
-func main() {
+// fibonacci is a function that returns
+// a function that returns an int.
+func fibonacci() func() int {
+	fib1, fib2 := 0, 1
+	return func() int {
+		ret := fib1
+		fib1, fib2 = fib2, fib1+fib2
+		return ret
+	}
+}
+
+func fibonacci_main() {
+	f := fibonacci()
+	for i := 0; i < 10; i++ {
+		fmt.Println(f())
+	}
+}
+
+func __main() {
 
 	type User struct {
 		Name   string
